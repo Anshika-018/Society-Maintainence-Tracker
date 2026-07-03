@@ -23,6 +23,7 @@ function LandingPage() {
   const { currentUser, login } = useApp();
   const navigate = useNavigate();
   const [role, setRole] = useState<"resident" | "admin">("resident");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (currentUser) {
@@ -38,11 +39,11 @@ function LandingPage() {
     defaultValues: { email: "", password: "" },
   });
 
-
-
   const onSubmit = form.handleSubmit(async (values) => {
+    setError(null);
     const result = await login(values.email, values.password);
     if (!result.ok) {
+      setError(result.error);
       toast.error(result.error);
       return;
     }
@@ -96,7 +97,7 @@ function LandingPage() {
             },
           ].map(({ icon: Icon, title, body }) => (
             <li key={title} className="flex gap-3">
-              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-md bg-primary-foreground/15">
+              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-md bg-primary-foreground/15 text-primary-foreground">
                 <Icon className="size-4" />
               </span>
               <div>
@@ -126,6 +127,12 @@ function LandingPage() {
               ? "Admin access to complaints, notices, and settings."
               : "Resident access to raise complaints and read notices."}
           </p>
+
+          {error ? (
+            <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-1 duration-200">
+              ⚠️ {error}
+            </div>
+          ) : null}
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-1.5">
@@ -172,7 +179,7 @@ function LandingPage() {
                 id="password"
                 type="password"
                 autoComplete="current-password"
-                placeholder="At least 6 characters"
+                placeholder="At least 8 characters"
                 {...form.register("password")}
               />
               {form.formState.errors.password ? (

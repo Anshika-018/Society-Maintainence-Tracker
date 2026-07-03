@@ -13,7 +13,12 @@ export const registerSchema = z
     flat: z.string().trim().max(12, "Flat number is too long").optional(),
     phone: z.string().trim().min(6, "Enter a valid phone number").max(20),
     email: z.string().trim().email("Enter a valid email").max(255),
-    password: z.string().min(6, "Use at least 6 characters").max(100),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[0-9]/, "Password must contain at least one digit")
+      .regex(/[^A-Za-z0-9]/, "Password must contain at least one symbol")
+      .max(100),
   })
   .refine(
     (data) => data.role === "admin" || (data.flat && data.flat.trim().length > 0),

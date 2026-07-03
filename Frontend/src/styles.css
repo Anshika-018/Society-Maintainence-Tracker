@@ -64,12 +64,12 @@
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.96 0.025 342);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.22 0.07 342);
 
   --card: oklch(0.99 0.015 342);
   --card-foreground: oklch(0.22 0.07 342);
-  --popover: oklch(0.99 0.015 342);
+  --popover: oklch(100% 0.00011 271.152);
   --popover-foreground: oklch(0.22 0.07 342);
 
   --primary: oklch(55.574% 0.11749 342.297);
@@ -81,7 +81,7 @@
   --muted: oklch(0.92 0.03 342);
   --muted-foreground: oklch(0.45 0.08 342);
 
-  --accent: oklch(0.88 0.06 342);
+  --accent: oklch(0.92 0.04 342);
   --accent-foreground: oklch(0.3 0.1 342);
 
   --destructive: oklch(58.212% 0.21816 26.832);
@@ -91,14 +91,14 @@
   --input: oklch(0.88 0.04 342);
   --ring: oklch(55.574% 0.11749 342.297);
 
-  /* Status colors: Open=plum tint, In Progress=terracotta soft, Resolved=sage, Overdue=deep red */
-  --status-open: oklch(0.92 0.06 342);
-  --status-open-foreground: oklch(0.45 0.1 342);
-  --status-progress: oklch(0.9 0.05 40);
-  --status-progress-foreground: oklch(0.45 0.15 35);
-  --status-resolved: oklch(0.88 0.06 145);
-  --status-resolved-foreground: oklch(40.408% 0.09715 145.196);
-  --status-overdue: oklch(0.58 0.22 27);
+  /* Status colors: Open=orange, In Progress=traffic yellow, Resolved=light green, Overdue=red */
+  --status-open: oklch(0.68 0.16 45);
+  --status-open-foreground: oklch(0.48 0.14 45);
+  --status-progress: oklch(0.76 0.16 90);
+  --status-progress-foreground: oklch(0.56 0.15 85);
+  --status-resolved: oklch(0.85 0.08 145);
+  --status-resolved-foreground: oklch(0.48 0.12 145);
+  --status-overdue: oklch(0.58 0.2 25);
   --status-overdue-foreground: oklch(0.99 0.01 342);
 
   --priority-low: oklch(0.9 0.04 342);

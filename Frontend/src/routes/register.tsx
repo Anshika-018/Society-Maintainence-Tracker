@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -33,6 +33,7 @@ type Values = z.infer<typeof registerSchema>;
 function RegisterPage() {
   const { currentUser, register } = useApp();
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (currentUser) {
@@ -59,9 +60,11 @@ function RegisterPage() {
   const isAdmin = role === "admin";
 
   const onSubmit = form.handleSubmit(async (values) => {
+    setError(null);
     const payload = { ...values, flat: values.flat || "" };
     const result = await register(payload as Omit<User, "id">);
     if (!result.ok) {
+      setError(result.error);
       toast.error(result.error);
       return;
     }
@@ -88,6 +91,12 @@ function RegisterPage() {
             ? "Admins manage complaints, notices, and settings for the society."
             : "Residents can raise complaints and read the notice board."}
         </p>
+
+        {error ? (
+          <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-1 duration-200">
+            ⚠️ {error}
+          </div>
+        ) : null}
 
         <form onSubmit={onSubmit} className="mt-6 space-y-4">
           <div className="space-y-1.5">
@@ -173,7 +182,7 @@ function RegisterPage() {
               id="password"
               type="password"
               autoComplete="new-password"
-              placeholder="At least 6 characters"
+              placeholder="At least 8 characters"
               {...form.register("password")}
             />
             {form.formState.errors.password ? (

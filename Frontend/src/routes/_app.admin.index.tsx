@@ -89,6 +89,7 @@ function AdminOverview() {
           label="Open"
           value={stats.byStatus["Open"]}
           icon={<AlertCircle className="size-4" />}
+          tone="warning"
         />
         <StatCard
           label="In progress"
@@ -100,7 +101,7 @@ function AdminOverview() {
           label="Overdue"
           value={stats.overdue}
           icon={<AlertCircle className="size-4" />}
-          tone={stats.overdue > 0 ? "danger" : "default"}
+          tone="danger"
           hint={stats.overdue > 0 ? "Needs attention" : "All within threshold"}
         />
       </section>

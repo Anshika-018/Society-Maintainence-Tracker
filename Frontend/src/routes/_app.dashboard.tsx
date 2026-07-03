@@ -47,11 +47,12 @@ function ResidentDashboard() {
       </header>
 
       <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Open" value={open} icon={<AlertCircle className="size-4" />} />
+        <StatCard label="Open" value={open} icon={<AlertCircle className="size-4" />} tone="warning" />
         <StatCard
           label="In progress"
           value={inProgress}
           icon={<Clock className="size-4" />}
+          tone="accent"
         />
         <StatCard
           label="Resolved"
@@ -63,7 +64,7 @@ function ResidentDashboard() {
           label="Overdue"
           value={overdueCount}
           icon={<AlertCircle className="size-4" />}
-          tone={overdueCount > 0 ? "danger" : "default"}
+          tone="danger"
         />
       </section>
 

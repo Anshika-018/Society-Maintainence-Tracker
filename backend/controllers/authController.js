@@ -20,10 +20,17 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "Please enter all required fields" });
     }
 
-    // Check if user exists
-    const userExists = await User.findOne({ email });
+    // Validate password strength
+    if (password.length < 8 || !/[0-9]/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+      return res.status(400).json({
+        message: "Password must be at least 8 characters long, contain at least one digit, and contain at least one symbol",
+      });
+    }
+
+    // Check if user exists with email or phone number
+    const userExists = await User.findOne({ $or: [{ email }, { phone }] });
     if (userExists) {
-      return res.status(400).json({ message: "User already exists with this email" });
+      return res.status(400).json({ message: "User already exists with email or phone number" });
     }
 
     // Hash password
@@ -77,14 +84,14 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
     console.log(`Login debug: email="${email}", userFound=${!!user}`);
     if (!user) {
-      return res.status(401).json({ message: "Incorrect email or password" });
+      return res.status(401).json({ message: "User does not exist" });
     }
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password_hash);
     console.log(`Login debug: isMatch=${isMatch}`);
     if (!isMatch) {
-      return res.status(401).json({ message: "Incorrect email or password" });
+      return res.status(401).json({ message: "Incorrect password" });
     }
 
     res.json({
