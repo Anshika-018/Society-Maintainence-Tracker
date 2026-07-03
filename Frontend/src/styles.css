@@ -1,0 +1,135 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Society Maintenance Tracker — Warm Community design tokens.
+ * Cream background, terracotta primary, amber accent, sage success.
+ * All color values use oklch. Do NOT hardcode Tailwind colors in components.
+ */
+
+@theme inline {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-status-open: var(--status-open);
+  --color-status-open-foreground: var(--status-open-foreground);
+  --color-status-progress: var(--status-progress);
+  --color-status-progress-foreground: var(--status-progress-foreground);
+  --color-status-resolved: var(--status-resolved);
+  --color-status-resolved-foreground: var(--status-resolved-foreground);
+  --color-status-overdue: var(--status-overdue);
+  --color-status-overdue-foreground: var(--status-overdue-foreground);
+
+  --color-priority-low: var(--priority-low);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-high: var(--priority-high);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.96 0.025 342);
+  --foreground: oklch(0.22 0.07 342);
+
+  --card: oklch(0.99 0.015 342);
+  --card-foreground: oklch(0.22 0.07 342);
+  --popover: oklch(0.99 0.015 342);
+  --popover-foreground: oklch(0.22 0.07 342);
+
+  --primary: oklch(55.574% 0.11749 342.297);
+  --primary-foreground: oklch(0.99 0.01 342);
+
+  --secondary: oklch(0.92 0.04 342);
+  --secondary-foreground: oklch(0.35 0.08 342);
+
+  --muted: oklch(0.92 0.03 342);
+  --muted-foreground: oklch(0.45 0.08 342);
+
+  --accent: oklch(0.88 0.06 342);
+  --accent-foreground: oklch(0.3 0.1 342);
+
+  --destructive: oklch(58.212% 0.21816 26.832);
+  --destructive-foreground: oklch(0.99 0.01 342);
+
+  --border: oklch(0.88 0.04 342);
+  --input: oklch(0.88 0.04 342);
+  --ring: oklch(55.574% 0.11749 342.297);
+
+  /* Status colors: Open=plum tint, In Progress=terracotta soft, Resolved=sage, Overdue=deep red */
+  --status-open: oklch(0.92 0.06 342);
+  --status-open-foreground: oklch(0.45 0.1 342);
+  --status-progress: oklch(0.9 0.05 40);
+  --status-progress-foreground: oklch(0.45 0.15 35);
+  --status-resolved: oklch(0.88 0.06 145);
+  --status-resolved-foreground: oklch(40.408% 0.09715 145.196);
+  --status-overdue: oklch(0.58 0.22 27);
+  --status-overdue-foreground: oklch(0.99 0.01 342);
+
+  --priority-low: oklch(0.9 0.04 342);
+  --priority-medium: oklch(0.76 0.09 342);
+  --priority-high: oklch(45% 0.15 342);
+
+  --chart-1: oklch(55% 0.12 342);
+  --chart-2: oklch(70% 0.1 342);
+  --chart-3: oklch(80% 0.08 342);
+  --chart-4: oklch(40% 0.14 342);
+  --chart-5: oklch(90% 0.04 342);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
