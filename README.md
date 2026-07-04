@@ -57,12 +57,16 @@ A modern, community-first web application designed to streamline apartment socie
    ```
 
 2. **Configure Environment Variables**
-   The backend environment variables are already set up to run zero-config out of the box using a local embedded database. If you wish to customize it, you can create a `.env` file inside the `backend` folder:
+      The backend environment variables are already set up to run zero-config out of the box using a local embedded database. If you wish to customize it, you can create a `.env` file inside the `backend` folder:
    ```env
    PORT=5000
    JWT_SECRET=your_super_secret_jwt_key
    MONGODB_URI=auto  # Set to a remote MongoDB connection string to use a cloud database (e.g. MongoDB Atlas)
+   Create a `.env` file in the `backend` directory by copying the `.env.example` template:
+   ```bash
+   cp .env.example backend/.env
    ```
+   *(By default, the application runs zero-config using an automatic local database).*
 
 3. **Install Backend Dependencies & Run**
    ```bash
