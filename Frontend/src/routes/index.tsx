@@ -36,8 +36,19 @@ function LandingPage() {
 
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "resident@demo.com", password: "demo1234" },
   });
+
+  useEffect(() => {
+    if (role === "admin") {
+      form.setValue("email", "admin@demo.com");
+      form.setValue("password", "demo1234");
+    } else {
+      form.setValue("email", "resident@demo.com");
+      form.setValue("password", "demo1234");
+    }
+    setError(null);
+  }, [role, form]);
 
   const onSubmit = form.handleSubmit(async (values) => {
     setError(null);
